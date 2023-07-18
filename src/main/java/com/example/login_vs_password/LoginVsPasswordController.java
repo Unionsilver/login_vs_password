@@ -23,3 +23,5 @@ public class LoginVsPasswordController  {
         return loginVsPasswordService.loginSetting(login,password,confirmPassword) ;
     }
 }
+
+
