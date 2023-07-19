@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/sign")
-public class LoginVsPasswordController  {
+public class LoginVsPasswordController {
 
 
     private final LoginVsPasswordService loginVsPasswordService;
@@ -17,11 +17,19 @@ public class LoginVsPasswordController  {
     }
 
     @GetMapping(path = "/login")
-    public  String loginSetting(@RequestParam String login,
-                                @RequestParam String password,
-                                @RequestParam String confirmPassword){
-        return loginVsPasswordService.loginSetting(login,password,confirmPassword) ;
+    public String loginSetting(@RequestParam String login,
+                               @RequestParam String password,
+                               @RequestParam String confirmPassword) {
+        try {
+            loginVsPasswordService.loginSetting(login, password, confirmPassword);
+            return "Логин выполнен успешно";
+        } catch (WrongLoginException | WrongPasswordException ex) {
+            return ex.getMessage();
+        }
+
     }
 }
+
+
 
 
