@@ -11,10 +11,10 @@ public class LoginVsPasswordServiceImpl implements LoginVsPasswordService {
     @Override
     public void loginSetting(String login, String password, String confirmPassword) {
 
-        if (!login.matches("^[a-zA-Z0-9_]{1,20}$")) {
+        if (!login.matches(REGEX.pattern()))  {
             throw new WrongLoginException("BOOOM");
         }
-        if ((!password.matches("^[a-zA-Z0-9_]{1,20}$"))) {
+        if (!password.matches(REGEX.pattern()))  {
             throw new WrongPasswordException("BOOOM2");
         }
         if (!password.equals(confirmPassword)) {
